@@ -45,8 +45,20 @@ class ViewController: UIViewController {
         //task via high func
         let arrayFunc = someArray.reduce(0) { $0 + $1.count }
         print("Total number version 2 :",arrayFunc)
-        let ar = someArray.filter { $0.count > 5 } //вернул все эл. которые больше 5,т.e выбросил<5
-        print("Quantity > 10 - \(ar.filter { $0.count > 10 }.count) \n Max symbols - \(ar.max() { $0.count < $1.count}) \n Sorted array without 'spaces' - \(ar.sorted() { $0.count < $1.count }.description.replacingOccurrences(of: " ", with: "")) ")
+        var ar = someArray.filter { $0.count > 5 } //вернул все эл. которые больше 5,т.e выбросил<5
+        print("Quantity > 10 - \(ar.filter { $0.count > 10 }.count) \n Max symbols - \(ar.max() { $0.count < $1.count}) \n Sorted array without 'spaces' - \(ar.map {String(Array($0.replacingOccurrences(of: " ", with: "")))}.sorted() { $0.count < $1.count })  ")
+        //еще один вариант шестого задания ниже
+        i = 0
+        var tempString: String = "t"
+        var tempArray = [String]()
+        for character in ar{
+            tempString = ar[i].filter {!$0.isWhitespace }
+            tempArray.append(tempString)
+            i += 1
+        }
+        ar = tempArray
+        print("Еще один вариант шестого задания: ",ar.sorted() { $0.count < $1.count })
+        
         
     }
     
